@@ -3,6 +3,7 @@
 	import { resolve } from '$app/paths';
 	import { AIRBNB_URL } from '$lib/booking';
 	import logo from '$lib/assets/logo.png';
+	import poolImage from '$lib/assets/belfrogswimmingpool.jpg';
 
 	let mobileMenuOpen = $state(false);
 	let scrolled = $state(false);
@@ -30,12 +31,21 @@
 </script>
 
 <section id="top" class="relative h-screen min-h-[600px] w-full overflow-hidden">
+	<!-- mobile: show a poster image until video is available; desktop: show video -->
+	<img
+		src={poolImage}
+		alt="Pool at The Bell Frog Inn"
+		class="absolute inset-0 h-full w-full object-cover md:hidden"
+	/>
+
 	<video
 		autoplay
 		muted
 		loop
 		playsinline
-		class="absolute inset-0 h-full w-full object-cover"
+		poster={poolImage}
+		class="absolute inset-0 h-full w-full object-cover hidden md:block"
+		preload="metadata"
 	>
 		<source src="/hero.mp4" type="video/mp4" />
 	</video>
@@ -51,7 +61,7 @@
 				<img
 					src={logo}
 					alt="The Bell Frog Inn"
-					class="h-11 w-auto drop-shadow transition duration-300 lg:h-14 {scrolled ? '' : 'brightness-0 invert'}"
+					class="h-11 md:h-14 w-auto max-w-[180px] object-contain drop-shadow transition duration-300 {scrolled ? '' : 'brightness-0 invert'}"
 				/>
 			</a>
 

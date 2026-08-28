@@ -1,6 +1,7 @@
 <script lang="ts">
 	import SectionHeading from './SectionHeading.svelte';
 	import horizonLogo from '$lib/assets/Home - Helicopter Horizons/logo_horizon.png';
+	import riverside from '$lib/assets/riverside_beldftog.jpg';
 
 	const scenic30 = [
 		[1, 560],
@@ -82,7 +83,7 @@
 
 			<div class="rounded-3xl bg-white p-8 shadow-sm md:p-10">
 				<div class="mb-4 flex flex-col gap-4 sm:flex-row sm:items-center">
-					<img src={horizonLogo} alt="Helicopter Horizons" class="h-16 w-auto" />
+					<img src={horizonLogo} alt="Helicopter Horizons" class="h-12 sm:h-16 w-auto object-contain" />
 					<div>
 						<h3 class="text-2xl font-semibold text-stone-900">Doors-Off Helicopter Flights</h3>
 						<p class="text-sm text-stone-500">Departing from The Bell Frog</p>
@@ -170,13 +171,16 @@
 
 		<div class="mt-8 grid gap-8 lg:grid-cols-2">
 			<div class="relative overflow-hidden rounded-3xl bg-stone-900 text-white">
+				<!-- mobile fallback image -->
+				<img src={riverside} alt="Springbok and riverside" class="absolute inset-0 h-full w-full object-cover md:hidden" />
 				<video
 					autoplay
 					muted
 					loop
 					playsinline
 					preload="metadata"
-					class="absolute inset-0 h-full w-full object-cover"
+					poster={riverside}
+					class="absolute inset-0 h-full w-full object-cover hidden md:block"
 				>
 					<source
 						src="https://gigv2mtom7.ufs.sh/f/nNcvyTvVcPZi1yyw8SHPWxvZGtuEVPC3OINLApgyrwqafK78"
@@ -185,9 +189,7 @@
 				</video>
 				<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
 				<div class="relative z-10 flex h-full min-h-[280px] flex-col justify-end p-8">
-					<h4 class="mb-2 text-lg font-semibold">Remote Champagne Experience</h4>
-					<p class="text-4xl font-bold">$50</p>
-					<p class="mt-2 text-sm opacity-90">per person, booked with any scenic flight above.</p>
+					<h4 class="mb-2 text-lg font-semibold">Sit back and relax — watch nature</h4>
 				</div>
 			</div>
 

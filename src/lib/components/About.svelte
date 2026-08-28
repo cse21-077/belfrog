@@ -1,5 +1,9 @@
 <script lang="ts">
 	import SectionHeading from './SectionHeading.svelte';
+	import poolImage from '$lib/assets/belfrogswimmingpool.jpg';
+	import kidsPool from '$lib/assets/kids_inpool.jpg';
+	import riverside from '$lib/assets/riverside_beldftog.jpg';
+	import knobthorn from '$lib/assets/Knobthorn.jpg';
 </script>
 
 <section id="about" class="bg-white px-6 py-20 md:py-28">
@@ -22,26 +26,34 @@
 				</p>
 			</div>
 
-			<div class="grid grid-cols-2 gap-4">
-				<div class="space-y-4">
-					<div class="aspect-[3/4] w-full overflow-hidden rounded-3xl">
+			<div class="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:grid-rows-2">
+				<!-- Large feature: video (spans 2 cols, 2 rows on desktop) -->
+				<div class="col-span-1 sm:col-span-2 sm:row-span-2 overflow-hidden rounded-3xl bg-black">
+					<div class="aspect-[4/3] w-full h-full">
+						<img src={poolImage} alt="Pool" class="h-full w-full object-cover md:hidden rounded-3xl" />
+
 						<video
 							autoplay
 							muted
 							loop
 							playsinline
-							class="h-full w-full object-cover"
+							poster={poolImage}
+							preload="metadata"
+							class="hidden md:block h-full w-full object-cover rounded-3xl"
 						>
 							<source src="/farm.mp4" type="video/mp4" />
 						</video>
 					</div>
 				</div>
-				<div class="space-y-4 pt-8">
-					<img
-						src="/knobthorn-detail.jpg"
-						alt="Knobthorn tent interior"
-						class="aspect-[3/4] w-full rounded-3xl object-cover"
-					/>
+
+				<!-- Top-right: kids in pool -->
+				<div class="overflow-hidden rounded-3xl bg-stone-100">
+					<img src={kidsPool} alt="Kids in pool" class="h-full w-full object-cover aspect-[4/3] rounded-3xl" />
+				</div>
+
+				<!-- Middle-right: riverside wildlife -->
+				<div class="overflow-hidden rounded-3xl bg-stone-100">
+					<img src={riverside} alt="Riverside" class="h-full w-full object-cover aspect-[4/3] rounded-3xl" />
 				</div>
 			</div>
 		</div>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair+Display:wght@400;600;700;900&display=swap');
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
@@ -8,9 +8,21 @@
 	--color-brand-700: #5d3d00;
 	--color-accent: #a91533;
 	--color-accent-700: #7a0f25;
-	--font-sans: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+	--font-sans: 'Lato', ui-sans-serif, system-ui, sans-serif;
+	--font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
 }
 
 html {
 	scroll-behavior: smooth;
+}
+
+/* Apply Montserrat globally */
+
+html, body {
+	font-family: var(--font-sans);
+}
+
+/* Headings use an expressive serif to set the mood; body uses a clean sans for readability */
+h1, h2, h3, h4, h5, h6 {
+	font-family: var(--font-serif);
 }
