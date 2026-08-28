@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+@theme {
+	--color-brand: #875600;
+	--color-brand-700: #5d3d00;
+	--color-accent: #a91533;
+	--color-accent-700: #7a0f25;
+	--font-sans: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+	scroll-behavior: smooth;
+}
