@@ -1,42 +1,51 @@
-# sv
+# The Bell Frog Inn — Website + CMS
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+SvelteKit site for The Bell Frog Inn (Okavango Delta, Botswana) with a built-in CMS backed by Supabase Postgres.
 
-## Creating a project
+## Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+- Public site: hero, accommodation, glamping tents ("Sleeps 2 · Max 2 guests"), full 2026 activities & transfer rates with a **BWP / USD / EUR currency switcher**, Booking.com + Airbnb CTAs, reviews carousel (or third-party widget embed), and a direct booking request form with live availability.
+- **Admin CMS** at `/admin`: dashboard, bookings (confirm/cancel), tents (with multi-photo galleries), rates (with nested price rows), reviews, blocked dates, settings, and a `.docx` export of all site copy.
+- **Booking engine**: availability checks against bookings + imported iCal blocks; new requests are stored, emailed to `bookings@thebellfrog.com` (Resend), and the guest gets an auto-reply.
+- **2-way calendar sync**: imports Airbnb / Booking.com iCal feeds into blocked dates (auto-syncs when stale), and publishes `/api/calendar.ics` so the platforms can subscribe to direct bookings.
 
-```sh
-# create a new project
-npx sv create my-app
-```
+## Setup
 
-To recreate this project with the same configuration:
+1. `pnpm install`
+2. Copy `.env.example` → `.env` and fill in:
+   - `DATABASE_URL` / `DIRECT_URL` — Supabase pooler URLs (transaction mode for runtime, session mode for migrations)
+   - `RESEND_API_KEY` + `EMAIL_FROM` — email delivery (blank key = emails logged to console in dev)
+   - `ADMIN_EMAIL` / `ADMIN_PASSWORD` — initial admin (created by the seed)
+   - `ICAL_SYNC_SECRET` — protects `POST /api/ical/sync`
+   - `SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY` — image uploads to Supabase Storage (get the service-role key from Supabase Dashboard → Settings → API; the `site-assets` bucket is created automatically on first upload)
+3. `pnpm db:migrate && pnpm db:seed`
+4. `pnpm dev`
 
-```sh
-# recreate this project
-pnpm dlx sv@0.17.0 create --template minimal --types ts --add tailwindcss="plugins:typography,forms" eslint --install pnpm ./
-```
+## Scripts
 
-## Developing
+| Command | Purpose |
+| --- | --- |
+| `pnpm dev` | Dev server |
+| `pnpm build` / `pnpm preview` | Production build / preview |
+| `pnpm check` / `pnpm lint` | Type-check / lint |
+| `pnpm db:generate` | Regenerate Prisma client |
+| `pnpm db:migrate` | Apply migrations (`prisma migrate deploy`) |
+| `pnpm db:seed` | Seed tents, 2026 rates, reviews, settings, admin user |
+| `pnpm db:studio` | Prisma Studio |
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## Calendar sync
 
-```sh
-npm run dev
+- In **Settings** paste the secret iCal feed URLs from the Airbnb and Booking.com extranets, then use **Blocked Dates → Sync calendars now**.
+- The site also re-syncs automatically when availability data is older than 1 hour. To sync on a schedule, hit `POST /api/ical/sync` with the `x-sync-secret` header (cron-job.org, Vercel Cron, etc.).
+- Subscribe the extranets to `https://<your-domain>/api/calendar.ics` so confirmed direct bookings block the platforms.
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+## Images & galleries
 
-## Building
+- Tent galleries live in **Admin → Tents → (edit)** — upload straight to Supabase Storage (JPEG/PNG/WebP/AVIF/GIF, max 8MB), or paste any image URL. Reorder with ↑/↓, remove with the trash icon. The public tent cards render the photos as a slideshow.
+- Packages/rates are text + pricing (no images by design) — create/edit/delete them under **Admin → Rates**.
 
-To create a production version of your app:
+## Notes
 
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+- Rates are stored in their native currency (Pula for activities/transfers, USD for Helicopter Horizons) and converted on the site using the FX rates in Settings.
+- The Booking.com button URL is a placeholder until the real property URL is saved in Settings.
+- Deploy with any SvelteKit adapter (`adapter-auto` picks up Vercel/Netlify/Cloudflare automatically).

@@ -3,7 +3,6 @@
 	import poolImage from '$lib/assets/belfrogswimmingpool.jpg';
 	import kidsPool from '$lib/assets/kids_inpool.jpg';
 	import riverside from '$lib/assets/riverside_beldftog.jpg';
-	import knobthorn from '$lib/assets/Knobthorn.jpg';
 </script>
 
 <section id="about" class="bg-white px-6 py-20 md:py-28">

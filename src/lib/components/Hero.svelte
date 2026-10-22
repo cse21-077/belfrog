@@ -1,15 +1,19 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { resolve } from '$app/paths';
-	import { AIRBNB_URL } from '$lib/booking';
+	import type { SiteSettings } from '$lib/cms';
 	import logo from '$lib/assets/logo.png';
 	import poolImage from '$lib/assets/belfrogswimmingpool.jpg';
+
+	let { settings }: { settings: SiteSettings } = $props();
 
 	let mobileMenuOpen = $state(false);
 	let scrolled = $state(false);
 
 	const navLinks = [
 		{ label: 'Stay', href: '/#accommodation' },
+		{ label: 'Glamping', href: '/#glamping' },
+		{ label: 'Rates', href: '/#rates' },
 		{ label: 'About', href: '/#about' },
 		{ label: 'Experiences', href: '/#experiences' },
 		{ label: 'Contact', href: '/#contact' }
@@ -65,23 +69,33 @@
 				/>
 			</a>
 
-			<nav class="hidden items-center gap-8 text-sm font-semibold md:flex {scrolled ? 'text-stone-800' : 'text-white'}">
+			<nav class="hidden items-center gap-6 text-sm font-semibold lg:flex {scrolled ? 'text-stone-800' : 'text-white'}">
 				{#each navLinks as link (link.href)}
 					<a href={resolve(link.href)} class="transition-colors hover:text-brand">{link.label}</a>
 				{/each}
 				<a
-					href={AIRBNB_URL}
+					href={settings.airbnbUrl}
 					target="_blank"
 					rel="external noopener noreferrer"
 					class="rounded-full bg-accent px-5 py-2.5 text-white shadow transition hover:bg-accent-700"
 				>
 					Book Now
 				</a>
+				<a
+					href={settings.bookingcomUrl}
+					target="_blank"
+					rel="external noopener noreferrer"
+					class="rounded-full border-2 px-5 py-2.5 shadow transition {scrolled
+						? 'border-brand text-brand hover:bg-brand hover:text-white'
+						: 'border-white text-white hover:bg-white hover:text-stone-900'}"
+				>
+					Booking.com
+				</a>
 			</nav>
 
 			<button
 				type="button"
-				class="rounded-lg p-2 transition md:hidden {scrolled ? 'text-stone-800 hover:bg-stone-100' : 'text-white hover:bg-white/10'}"
+				class="rounded-lg p-2 transition lg:hidden {scrolled ? 'text-stone-800 hover:bg-stone-100' : 'text-white hover:bg-white/10'}"
 				aria-label="Open menu"
 				aria-expanded={mobileMenuOpen}
 				onclick={toggleMenu}
@@ -104,7 +118,7 @@
 
 		{#if mobileMenuOpen}
 			<div
-				class="absolute inset-x-0 top-full border-t border-white/10 bg-black/90 px-6 pb-6 pt-4 backdrop-blur md:hidden"
+				class="absolute inset-x-0 top-full border-t border-white/10 bg-black/90 px-6 pb-6 pt-4 backdrop-blur lg:hidden"
 			>
 				<nav class="flex flex-col gap-4 text-base font-medium text-white">
 					{#each navLinks as link (link.href)}
@@ -116,14 +130,24 @@
 							{link.label}
 						</a>
 					{/each}
-					<a
-						href={AIRBNB_URL}
-						target="_blank"
-						rel="external noopener noreferrer"
-						class="mt-2 rounded-full bg-accent px-5 py-3 text-center font-semibold hover:bg-accent-700"
-					>
-						Book Now
-					</a>
+					<div class="mt-2 flex flex-col gap-3">
+						<a
+							href={settings.airbnbUrl}
+							target="_blank"
+							rel="external noopener noreferrer"
+							class="rounded-full bg-accent px-5 py-3 text-center font-semibold hover:bg-accent-700"
+						>
+							Book Now
+						</a>
+						<a
+							href={settings.bookingcomUrl}
+							target="_blank"
+							rel="external noopener noreferrer"
+							class="rounded-full border-2 border-white px-5 py-3 text-center font-semibold hover:bg-white hover:text-stone-900"
+						>
+							Book via Booking.com
+						</a>
+					</div>
 				</nav>
 			</div>
 		{/if}
@@ -141,7 +165,7 @@
 		</p>
 		<div class="flex flex-wrap justify-center gap-4">
 			<a
-				href={AIRBNB_URL}
+				href={settings.airbnbUrl}
 				target="_blank"
 				rel="external noopener noreferrer"
 				class="rounded-full bg-accent px-8 py-3.5 text-base font-semibold shadow-lg transition hover:bg-accent-700"
@@ -149,10 +173,10 @@
 				Book Your Stay
 			</a>
 			<a
-				href="#experiences"
+				href="#rates"
 				class="rounded-full border-2 border-white px-8 py-3.5 text-base font-semibold transition hover:bg-white hover:text-stone-900"
 			>
-				Explore Experiences
+				See 2026 Rates
 			</a>
 		</div>
 	</div>

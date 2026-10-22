@@ -1,0 +1,189 @@
+generator client {
+	provider = "prisma-client-js"
+}
+
+datasource db {
+	provider  = "postgresql"
+	url       = env("DATABASE_URL")
+	directUrl = env("DIRECT_URL")
+}
+
+enum RateCategory {
+	GLAMPING
+	EXCURSION
+	BOAT
+	TRANSFER
+	HELICOPTER
+	SPECIAL
+}
+
+enum RateUnit {
+	PER_NIGHT
+	PER_PERSON
+	PER_TRIP
+	COMPLIMENTARY
+	ON_REQUEST
+}
+
+enum Currency {
+	BWP
+	USD
+	EUR
+}
+
+enum BookingStatus {
+	PENDING
+	CONFIRMED
+	CANCELLED
+}
+
+enum BookingSource {
+	WEB
+	AIRBNB
+	BOOKINGCOM
+	MANUAL
+}
+
+enum BlockSource {
+	AIRBNB
+	BOOKINGCOM
+	MANUAL
+}
+
+model Tent {
+	id            String       @id
+	name          String
+	localName     String       @default("")
+	image         String
+	capacity      Int          @default(2)
+	pricePerNight Int?         @map("price_per_night")
+	blurb         String?
+	sortOrder     Int          @default(0) @map("sort_order")
+	active        Boolean      @default(true)
+	bookings      Booking[]
+	images        TentImage[]
+
+	@@map("tents")
+}
+
+model TentImage {
+	id        String @id @default(uuid())
+	tent      Tent   @relation(fields: [tentId], references: [id], onDelete: Cascade)
+	tentId    String @map("tent_id")
+	url       String
+	alt       String @default("")
+	sortOrder Int    @default(0) @map("sort_order")
+
+	@@index([tentId])
+	@@map("tent_images")
+}
+
+model Rate {
+	id        String       @id
+	category  RateCategory
+	name      String
+	details   String       @default("")
+	minPax    Int?         @map("min_pax")
+	maxPax    Int?         @map("max_pax")
+	unit      RateUnit     @default(PER_PERSON)
+	sortOrder Int          @default(0) @map("sort_order")
+	active    Boolean      @default(true)
+	prices    RatePrice[]
+
+	@@map("rates")
+}
+
+model RatePrice {
+	id        String   @id @default(uuid())
+	rate      Rate     @relation(fields: [rateId], references: [id], onDelete: Cascade)
+	rateId    String   @map("rate_id")
+	amount    Int?
+	currency  Currency @default(BWP)
+	label     String   @default("")
+	sortOrder Int      @default(0) @map("sort_order")
+
+	@@index([rateId])
+	@@map("rate_prices")
+}
+
+model Review {
+	id        String   @id @default(uuid())
+	author    String
+	location  String   @default("")
+	rating    Int      @default(5)
+	text      String
+	date      DateTime @db.Date
+	source    String   @default("AIRBNB")
+	sortOrder Int      @default(0) @map("sort_order")
+	active    Boolean  @default(true)
+
+	@@map("reviews")
+}
+
+model Booking {
+	id        String        @id @default(uuid())
+	code      String        @unique
+	guestName String        @map("guest_name")
+	email     String
+	phone     String        @default("")
+	checkIn   DateTime      @map("check_in") @db.Date
+	checkOut  DateTime      @map("check_out") @db.Date
+	guests    Int           @default(2)
+	tent      Tent?         @relation(fields: [tentId], references: [id], onDelete: SetNull)
+	tentId    String?       @map("tent_id")
+	status    BookingStatus @default(PENDING)
+	source    BookingSource @default(WEB)
+	notes     String        @default("")
+	createdAt DateTime      @default(now()) @map("created_at")
+	blocks    BlockedDate[]
+
+	@@index([checkIn, checkOut])
+	@@index([status])
+	@@map("bookings")
+}
+
+model BlockedDate {
+	id         String      @id @default(uuid())
+	start      DateTime    @db.Date
+	end        DateTime    @db.Date
+	source     BlockSource @default(MANUAL)
+	summary    String      @default("")
+	externalId String?     @map("external_id")
+	booking    Booking?    @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+	bookingId  String?     @map("booking_id")
+	createdAt  DateTime    @default(now()) @map("created_at")
+
+	@@unique([source, externalId])
+	@@index([start, end])
+	@@map("blocked_dates")
+}
+
+model Setting {
+	key   String @id
+	value String @default("")
+
+	@@map("settings")
+}
+
+model AdminUser {
+	id           String    @id @default(uuid())
+	email        String    @unique
+	name         String    @default("")
+	passwordHash String    @map("password_hash")
+	createdAt    DateTime  @default(now()) @map("created_at")
+	sessions     Session[]
+
+	@@map("admin_users")
+}
+
+model Session {
+	id        String    @id @default(uuid())
+	tokenHash String    @unique @map("token_hash")
+	user      AdminUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+	userId    String    @map("user_id")
+	expiresAt DateTime  @map("expires_at")
+	createdAt DateTime  @default(now()) @map("created_at")
+
+	@@index([userId])
+	@@map("sessions")
+}
