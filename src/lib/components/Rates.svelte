@@ -13,6 +13,7 @@
 	let { rates, settings }: { rates: Rate[]; settings: SiteSettings } = $props();
 
 	let currency = $state<Currency>('BWP');
+	let openCategory = $state<RateCategory | null>('GLAMPING');
 
 	const fx = $derived({ usd: settings.fxUsd, eur: settings.fxEur });
 
@@ -35,6 +36,10 @@
 			}))
 			.filter((group) => group.items.length > 0)
 	);
+
+	function toggle(category: RateCategory) {
+		openCategory = openCategory === category ? null : category;
+	}
 
 	function priceText(price: { amount: number | null; currency: Currency }): string {
 		return formatRatePrice(price, currency, fx);
@@ -64,63 +69,76 @@
 			</div>
 		</div>
 
-		<div class="grid gap-8 sm:grid-cols-2">
+		<div class="mt-4 space-y-4">
 			{#each byCategory as group (group.category)}
-				<div
-					class="rounded-3xl bg-stone-50 p-6 ring-1 ring-stone-100 md:p-8 {group.category === 'HELICOPTER'
-						? 'sm:col-span-2'
-						: ''}"
-				>
-					<div class="mb-2 flex flex-wrap items-baseline justify-between gap-2">
-						<h3 class="text-xl font-semibold text-stone-900">{CATEGORY_META[group.category].title}</h3>
-						<span class="text-xs font-medium uppercase tracking-wider text-stone-400">
-							{CATEGORY_META[group.category].blurb}
-						</span>
-					</div>
+				{@const isOpen = openCategory === group.category}
+				<div class="overflow-hidden rounded-3xl bg-stone-50 ring-1 ring-stone-100">
+					<button
+						type="button"
+						onclick={() => toggle(group.category)}
+						aria-expanded={isOpen}
+						class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition hover:bg-stone-100/60 md:px-8"
+					>
+						<div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+							<h3 class="text-xl font-semibold text-stone-900">{CATEGORY_META[group.category].title}</h3>
+							<span class="text-xs font-medium uppercase tracking-wider text-stone-400">
+								{CATEGORY_META[group.category].blurb}
+							</span>
+						</div>
+						<svg
+							class="h-6 w-6 shrink-0 text-brand transition-transform duration-300 {isOpen ? 'rotate-180' : ''}"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							viewBox="0 0 24 24"
+						>
+							<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+						</svg>
+					</button>
 
-					<ul class="divide-y divide-stone-200/70">
-						{#each group.items as rate (rate.id)}
-							<li class="flex flex-col gap-3 py-4 sm:flex-row sm:items-start sm:justify-between">
-								<div class="max-w-md">
-									<p class="font-semibold text-stone-900">{rate.name}</p>
-									{#if rate.details}
-										<p class="mt-1 text-sm leading-relaxed text-stone-500">{rate.details}</p>
-									{/if}
-									{#if rate.minPax || rate.maxPax}
-										<p class="mt-2 text-xs font-medium text-stone-400">
-											{#if rate.minPax}Min {rate.minPax} pax{/if}{#if rate.minPax && rate.maxPax} · {/if}{#if rate.maxPax}Max {rate.maxPax} pax{/if}
-										</p>
-									{/if}
-								</div>
+					{#if isOpen}
+						<div class="border-t border-stone-200/60 px-6 pb-6 md:px-8">
+							<ul class="divide-y divide-stone-200/70">
+								{#each group.items as rate (rate.id)}
+									<li class="flex flex-col gap-3 py-4 sm:flex-row sm:items-start sm:justify-between">
+										<div class="max-w-md">
+											<p class="font-semibold text-stone-900">{rate.name}</p>
+											{#if rate.details}
+												<p class="mt-1 text-sm leading-relaxed text-stone-500">{rate.details}</p>
+											{/if}
+											{#if rate.minPax || rate.maxPax}
+												<p class="mt-2 text-xs font-medium text-stone-400">
+													{#if rate.minPax}Min {rate.minPax} pax{/if}{#if rate.minPax && rate.maxPax} · {/if}{#if rate.maxPax}Max {rate.maxPax} pax{/if}
+												</p>
+											{/if}
+										</div>
 
-								<div class="shrink-0 sm:text-right">
-									{#if rate.unit === 'COMPLIMENTARY'}
-										<span class="inline-flex items-center rounded-full bg-accent-700/10 px-4 py-1.5 text-sm font-bold text-accent-700 ring-1 ring-accent-700/20">
-											Complimentary
-										</span>
-									{:else if rate.unit === 'ON_REQUEST'}
-										<span class="inline-flex items-center rounded-full bg-stone-200/60 px-4 py-1.5 text-sm font-semibold text-stone-600 ring-1 ring-stone-300">
-											On request
-										</span>
-									{:else}
-										{#each rate.prices as price (price.sortOrder + price.label)}
-											<div class="flex items-baseline gap-2 sm:justify-end">
-												<span class="text-lg font-bold text-brand">{priceText(price)}</span>
-												<span class="text-xs text-stone-500">{price.label}</span>
-											</div>
-										{/each}
-									{/if}
-								</div>
-							</li>
-						{/each}
-					</ul>
+										<div class="shrink-0 sm:text-right">
+											{#if rate.unit === 'COMPLIMENTARY'}
+												<span class="text-lg font-bold text-accent">Complimentary</span>
+											{:else if rate.unit === 'ON_REQUEST'}
+												<span class="text-lg font-semibold text-stone-500">On request</span>
+											{:else}
+												{#each rate.prices as price (price.sortOrder + price.label)}
+													<div class="flex items-baseline gap-2 sm:justify-end">
+														<span class="text-lg font-bold text-brand">{priceText(price)}</span>
+														<span class="text-xs text-stone-500">{price.label}</span>
+													</div>
+												{/each}
+											{/if}
+										</div>
+									</li>
+								{/each}
+							</ul>
 
-					{#if group.category === 'HELICOPTER'}
-						<p class="mt-4 rounded-2xl bg-white/70 p-4 text-xs leading-relaxed text-stone-500 ring-1 ring-stone-100">
-							Partnership packages valid 1 Jan 2026 – 31 Dec 2026. Rates are quoted per person in USD —
-							converted to your selected currency above. Flight transfers include a maximum of 20kg of
-							luggage per person, strictly in soft-sided bags.
-						</p>
+							{#if group.category === 'HELICOPTER'}
+								<p class="mt-4 rounded-2xl bg-white/70 p-4 text-xs leading-relaxed text-stone-500 ring-1 ring-stone-100">
+									Partnership packages valid 1 Jan 2026 – 31 Dec 2026. Rates are quoted per person in USD —
+									converted to your selected currency above. Flight transfers include a maximum of 20kg of
+									luggage per person, strictly in soft-sided bags.
+								</p>
+							{/if}
+						</div>
 					{/if}
 				</div>
 			{/each}
