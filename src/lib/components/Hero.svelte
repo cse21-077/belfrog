@@ -157,7 +157,7 @@
 		<p class="mb-3 text-xs font-medium uppercase tracking-[0.25em] text-white/70">
 			The Bell Frog Inn
 		</p>
-		<h1 class="mb-6 text-5xl font-bold tracking-tight md:text-7xl lg:text-8xl">
+		<h1 class="mb-6 text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl">
 			{settings.heroTitle}
 		</h1>
 		<p class="mb-10 max-w-xl text-lg font-light leading-relaxed text-white/90 md:text-xl">
