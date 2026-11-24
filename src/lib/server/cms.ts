@@ -19,6 +19,7 @@ export async function getTents(): Promise<Tent[]> {
 			capacity: t.capacity,
 			pricePerNight: t.pricePerNight,
 			blurb: t.blurb,
+			airbnbUrl: t.airbnbUrl,
 			sortOrder: t.sortOrder,
 			active: t.active,
 			images: t.images.length > 0 ? t.images.map((img) => img.url) : [t.image]

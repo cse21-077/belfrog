@@ -72,7 +72,7 @@
 								</span>
 
 								<a
-									href={settings.airbnbUrl}
+									href={tent.airbnbUrl || settings.airbnbUrl}
 									target="_blank"
 									rel="external noopener noreferrer"
 									class="inline-flex items-center gap-2 rounded-full border-2 border-white/80 bg-transparent px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-white/20"

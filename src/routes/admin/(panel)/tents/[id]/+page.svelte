@@ -77,6 +77,10 @@
 			<input id="image" name="image" class={inputCls} value={tent.image} required placeholder="/acacia.jpg" />
 		</div>
 		<div>
+			<label class={labelCls} for="airbnbUrl">Airbnb listing URL (optional)</label>
+			<input id="airbnbUrl" name="airbnbUrl" class={inputCls} value={tent.airbnbUrl} placeholder="https://www.airbnb.com/rooms/…" />
+		</div>
+		<div>
 			<label class={labelCls} for="capacity">Capacity (sleeps)</label>
 			<input id="capacity" name="capacity" type="number" min="1" max="20" class={inputCls} value={tent.capacity} required />
 		</div>

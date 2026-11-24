@@ -58,6 +58,7 @@ model Tent {
 	capacity      Int          @default(2)
 	pricePerNight Int?         @map("price_per_night")
 	blurb         String?
+	airbnbUrl     String       @default("") @map("airbnb_url")
 	sortOrder     Int          @default(0) @map("sort_order")
 	active        Boolean      @default(true)
 	bookings      Booking[]

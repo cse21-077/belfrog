@@ -14,6 +14,7 @@ export const load: PageServerLoad = async ({ params }) => {
 				capacity: 2,
 				pricePerNight: null as number | null,
 				blurb: '',
+				airbnbUrl: '',
 				sortOrder: 0,
 				active: true,
 				images: [] as { id: string; url: string; alt: string; sortOrder: number }[]
@@ -36,6 +37,7 @@ export const actions: Actions = {
 		const name = String(form.get('name') ?? '').trim();
 		const localName = String(form.get('localName') ?? '').trim();
 		const image = String(form.get('image') ?? '').trim();
+		const airbnbUrl = String(form.get('airbnbUrl') ?? '').trim();
 		const capacity = Number(form.get('capacity'));
 		const priceRaw = String(form.get('pricePerNight') ?? '').trim();
 		const pricePerNight = priceRaw === '' ? null : Number(priceRaw);
@@ -52,6 +54,9 @@ export const actions: Actions = {
 		if (pricePerNight !== null && (!Number.isInteger(pricePerNight) || pricePerNight < 0)) {
 			return fail(400, { message: 'Price must be a whole number of Pula (or empty).' });
 		}
+		if (airbnbUrl && !/^https?:\/\//.test(airbnbUrl)) {
+			return fail(400, { message: 'Airbnb URL must start with http(s):// (or be left empty).' });
+		}
 
 		const data = {
 			name,
@@ -60,6 +65,7 @@ export const actions: Actions = {
 			capacity,
 			pricePerNight,
 			blurb: blurb || null,
+			airbnbUrl,
 			sortOrder: Number.isInteger(sortOrder) ? sortOrder : 0,
 			active
 		};

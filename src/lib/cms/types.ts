@@ -8,6 +8,7 @@ export interface Tent {
 	capacity: number;
 	pricePerNight: number | null;
 	blurb: string | null;
+	airbnbUrl?: string;
 	sortOrder: number;
 	active: boolean;
 	images: string[];

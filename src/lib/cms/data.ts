@@ -22,6 +22,7 @@ export const tents: Tent[] = [
 		capacity: 2,
 		pricePerNight: 950,
 		blurb: null,
+		airbnbUrl: 'https://www.airbnb.com/rooms/1102817687322855986',
 		sortOrder: 2,
 		active: true
 	},
@@ -34,6 +35,7 @@ export const tents: Tent[] = [
 		capacity: 2,
 		pricePerNight: 950,
 		blurb: null,
+		airbnbUrl: 'https://www.airbnb.com/rooms/1102858641659803082',
 		sortOrder: 3,
 		active: true
 	},
@@ -46,6 +48,7 @@ export const tents: Tent[] = [
 		capacity: 2,
 		pricePerNight: 950,
 		blurb: null,
+		airbnbUrl: 'https://www.airbnb.com/rooms/1102867484850200575',
 		sortOrder: 4,
 		active: true
 	},
@@ -59,6 +62,7 @@ export const tents: Tent[] = [
 		pricePerNight: 2950,
 		blurb:
 			'Only 2 exclusive tents. Private outdoor shower, ensuite bathroom, and complete seasonal river-facing privacy. Includes daily breakfast.',
+		airbnbUrl: 'https://www.airbnb.com/rooms/1826134875541832756',
 		sortOrder: 5,
 		active: true
 	},
@@ -72,6 +76,7 @@ export const tents: Tent[] = [
 		pricePerNight: 2950,
 		blurb:
 			'Only 2 exclusive tents. Private outdoor shower, ensuite bathroom, and complete seasonal river-facing privacy. Includes daily breakfast.',
+		airbnbUrl: 'https://www.airbnb.com/rooms/1826152946182384355',
 		sortOrder: 6,
 		active: true
 	}
