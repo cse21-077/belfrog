@@ -45,7 +45,7 @@
 					</li>
 					<li class="flex items-start gap-3">
 						<span class="mt-1 h-2 w-2 rounded-full bg-accent"></span>
-						<span>A 20% non-refundable deposit secures your reservation.</span>
+						<span>A 50% non-refundable deposit secures your reservation.</span>
 					</li>
 					<li class="flex items-start gap-3">
 						<span class="mt-1 h-2 w-2 rounded-full bg-accent"></span>

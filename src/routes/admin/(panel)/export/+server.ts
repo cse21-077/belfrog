@@ -63,7 +63,7 @@ export const GET: RequestHandler = async () => {
 
 		h('Stay — Rates & Booking'),
 		p('Complimentary Wi-Fi access at the bar on request.'),
-		p('A 20% non-refundable deposit secures your reservation.'),
+		p('A 50% non-refundable deposit secures your reservation.'),
 		p('Bank card facility available — no cash transactions required.'),
 	];
 

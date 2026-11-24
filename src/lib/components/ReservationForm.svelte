@@ -87,7 +87,7 @@
 <div class="rounded-3xl bg-stone-50 p-6 ring-1 ring-stone-100 md:p-8">
 	<h3 class="mb-2 text-2xl font-semibold text-stone-900">Request a Booking</h3>
 	<p class="mb-6 text-sm text-stone-500">
-		Send a direct booking request — we reply within 24 hours. A 20% non-refundable deposit secures
+		Send a direct booking request — we reply within 24 hours. A 50% non-refundable deposit secures
 		your reservation.
 	</p>
 

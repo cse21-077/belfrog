@@ -366,7 +366,7 @@ export const settings: SiteSettings = {
 	whatsapp: '26775116886',
 	airbnbUrl:
 		'https://www.airbnb.co.uk/rooms/1088303982104399236?source_impression_id=p3_1709318426_wPi8cIrSJVz9irCr',
-	bookingcomUrl: 'https://www.booking.com/',
+	bookingcomUrl: 'https://www.booking.com/hotel/bw/the-bell-frog-inn-maun.en-gb.html',
 	airbnbIcalUrl: '',
 	bookingcomIcalUrl: '',
 	fxUsd: 0.074,

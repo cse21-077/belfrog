@@ -51,7 +51,7 @@ export async function autoReplyGuest(booking: BookingMail, contactEmail: string)
 			<strong>Check-in:</strong> ${booking.checkIn}<br/>
 			<strong>Check-out:</strong> ${booking.checkOut}<br/>
 			<strong>Guests:</strong> ${booking.guests}</p>
-			<p>We will confirm availability within 24 hours. A 20% non-refundable deposit secures your reservation.</p>
+			<p>We will confirm availability within 24 hours. A 50% non-refundable deposit secures your reservation.</p>
 			<p>Warm regards,<br/>The Bell Frog Inn team<br/><a href="mailto:${contactEmail}">${contactEmail}</a></p>
 		`
 	});
