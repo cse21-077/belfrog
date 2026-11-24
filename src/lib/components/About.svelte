@@ -1,8 +1,5 @@
 <script lang="ts">
 	import SectionHeading from './SectionHeading.svelte';
-	import poolImage from '$lib/assets/belfrogswimmingpool.jpg';
-	import kidsPool from '$lib/assets/kids_inpool.jpg';
-	import riverside from '$lib/assets/riverside_beldftog.jpg';
 </script>
 
 <section id="about" class="bg-white px-6 py-20 md:py-28">
@@ -23,33 +20,31 @@
 			</div>
 
 			<div class="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:grid-rows-2">
-				<!-- Large feature: video (spans 2 cols, 2 rows on desktop) -->
-				<div class="col-span-1 sm:col-span-2 sm:row-span-2 overflow-hidden rounded-3xl bg-black">
-					<div class="aspect-[4/3] w-full h-full">
-						<img src={poolImage} alt="Pool" class="h-full w-full object-cover md:hidden rounded-3xl" />
-
-						<video
-							autoplay
-							muted
-							loop
-							playsinline
-							poster={poolImage}
-							preload="metadata"
-							class="hidden md:block h-full w-full object-cover rounded-3xl"
-						>
-							<source src="/farm.mp4" type="video/mp4" />
-						</video>
-					</div>
+				<!-- Large feature: pizza & drinks served at the bar (spans 2 cols, 2 rows on desktop) -->
+				<div class="col-span-1 sm:col-span-2 sm:row-span-2 overflow-hidden rounded-3xl bg-stone-100">
+					<img
+						src="/about-serve.jpg"
+						alt="Fresh pizza and drinks served at the Bell Frog bar"
+						class="h-full w-full object-cover aspect-[4/3] rounded-3xl"
+					/>
 				</div>
 
-				<!-- Top-right: kids in pool -->
+				<!-- Top-right: boat trip boarding -->
 				<div class="overflow-hidden rounded-3xl bg-stone-100">
-					<img src={kidsPool} alt="Kids in pool" class="h-full w-full object-cover aspect-[4/3] rounded-3xl" />
+					<img
+						src="/about-boat.jpg"
+						alt="Guests boarding a boat at the dock"
+						class="h-full w-full object-cover aspect-[4/3] rounded-3xl"
+					/>
 				</div>
 
-				<!-- Middle-right: riverside wildlife -->
+				<!-- Middle-right: guests at the lodge table -->
 				<div class="overflow-hidden rounded-3xl bg-stone-100">
-					<img src={riverside} alt="Riverside" class="h-full w-full object-cover aspect-[4/3] rounded-3xl" />
+					<img
+						src="/about-table.jpg"
+						alt="Guests relaxing together at the lodge"
+						class="h-full w-full object-cover aspect-[4/3] rounded-3xl"
+					/>
 				</div>
 			</div>
 		</div>
