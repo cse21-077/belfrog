@@ -3,12 +3,18 @@
 	import { resolve } from '$app/paths';
 	import type { SiteSettings } from '$lib/cms';
 	import logo from '$lib/assets/logo.png';
-	import poolImage from '$lib/assets/belfrogswimmingpool.jpg';
 
 	let { settings }: { settings: SiteSettings } = $props();
 
 	let mobileMenuOpen = $state(false);
 	let scrolled = $state(false);
+	let activeSlide = $state(0);
+
+	const slides = [
+		{ src: '/hero-garden.jpg', alt: 'Garden, pool and riverside lawn at The Bell Frog Inn' },
+		{ src: '/hero-bar.jpg', alt: 'Guests enjoying drinks at the bar' },
+		{ src: '/hero-dining.jpg', alt: 'Guests dining under the trees' }
+	] as const;
 
 	const navLinks = [
 		{ label: 'Stay', href: '/#accommodation' },
@@ -30,29 +36,32 @@
 	onMount(() => {
 		handleScroll();
 		window.addEventListener('scroll', handleScroll, { passive: true });
-		return () => window.removeEventListener('scroll', handleScroll);
+
+		const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		const timer = reduceMotion
+			? null
+			: setInterval(() => {
+					activeSlide = (activeSlide + 1) % slides.length;
+				}, 6000);
+
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+			if (timer) clearInterval(timer);
+		};
 	});
 </script>
 
 <section id="top" class="relative h-screen min-h-[600px] w-full overflow-hidden">
-	<!-- mobile: show a poster image until video is available; desktop: show video -->
-	<img
-		src={poolImage}
-		alt="Pool at The Bell Frog Inn"
-		class="absolute inset-0 h-full w-full object-cover md:hidden"
-	/>
-
-	<video
-		autoplay
-		muted
-		loop
-		playsinline
-		poster={poolImage}
-		class="absolute inset-0 h-full w-full object-cover hidden md:block"
-		preload="metadata"
-	>
-		<source src="/hero.mp4" type="video/mp4" />
-	</video>
+	{#each slides as slide, i (slide.src)}
+		<img
+			src={slide.src}
+			alt={slide.alt}
+			class="absolute inset-0 h-full w-full object-cover transition-opacity duration-[1600ms] ease-in-out {i ===
+			activeSlide
+				? 'opacity-100'
+				: 'opacity-0'}"
+		/>
+	{/each}
 	<div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/50"></div>
 
 	<header
