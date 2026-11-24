@@ -96,7 +96,7 @@
 		</div>
 		<div class="sm:col-span-2">
 			<label class={labelCls} for="blurb">Short description (optional)</label>
-			<textarea id="blurb" name="blurb" rows="3" class={inputCls} placeholder="River-facing tent with private deck…">{tent.blurb ?? ''}</textarea>
+			<textarea id="blurb" name="blurb" rows="3" class={inputCls} placeholder="Private deck with Delta views…">{tent.blurb ?? ''}</textarea>
 		</div>
 	</div>
 

@@ -7,6 +7,8 @@ export async function getSettings(): Promise<SiteSettings> {
 		const rows = await prisma.setting.findMany();
 		const map = new Map(rows.map((r) => [r.key, r.value]));
 		return {
+			heroTitle: map.get('heroTitle') ?? defaults.heroTitle,
+			heroSubtitle: map.get('heroSubtitle') ?? defaults.heroSubtitle,
 			contactEmail: map.get('contactEmail') ?? defaults.contactEmail,
 			notificationEmail: map.get('notificationEmail') ?? defaults.notificationEmail,
 			whatsapp: map.get('whatsapp') ?? defaults.whatsapp,

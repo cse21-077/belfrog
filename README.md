@@ -4,7 +4,7 @@ SvelteKit site for The Bell Frog Inn (Okavango Delta, Botswana) with a built-in 
 
 ## Features
 
-- Public site: hero, accommodation, glamping tents ("Sleeps 2 · Max 2 guests"), full 2026 activities & transfer rates with a **BWP / USD / EUR currency switcher**, Booking.com + Airbnb CTAs, reviews carousel (or third-party widget embed), and a direct booking request form with live availability.
+- Public site: hero, accommodation, tented accommodation ("Sleeps 2 · Max 2 guests"), full 2026 activities & transfer rates with a **BWP / USD / EUR currency switcher**, Booking.com + Airbnb CTAs, reviews carousel (or third-party widget embed), and a direct booking request form with live availability.
 - **Admin CMS** at `/admin`: dashboard, bookings (confirm/cancel), tents (with multi-photo galleries), rates (with nested price rows), reviews, blocked dates, settings, and a `.docx` export of all site copy.
 - **Booking engine**: availability checks against bookings + imported iCal blocks; new requests are stored, emailed to `bookings@thebellfrog.com` (Resend), and the guest gets an auto-reply.
 - **2-way calendar sync**: imports Airbnb / Booking.com iCal feeds into blocked dates (auto-syncs when stale), and publishes `/api/calendar.ics` so the platforms can subscribe to direct bookings.

@@ -91,7 +91,7 @@
 				<div class="col-span-2 overflow-hidden rounded-3xl">
 					<img
 						src={standardTent?.image ?? '/jackalberry.jpg'}
-						alt="Glamping tent at The Bell Frog Inn"
+						alt="Tented accommodation at The Bell Frog Inn"
 						class="h-64 w-full object-cover"
 					/>
 				</div>

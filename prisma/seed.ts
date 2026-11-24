@@ -5,6 +5,11 @@ import { rates, reviews, settings, tents } from '../src/lib/cms/data';
 const prisma = new PrismaClient();
 
 async function main() {
+	// Remove rows that are no longer part of the curated content (e.g. retired rates),
+	// so reseeding brings the database in line with src/lib/cms/data.ts.
+	await prisma.rate.deleteMany({ where: { id: { notIn: rates.map((r) => r.id) } } });
+	await prisma.tent.deleteMany({ where: { id: { notIn: tents.map((t) => t.id) } } });
+
 	for (const tent of tents) {
 		const { id, images, ...data } = tent;
 		await prisma.tent.upsert({ where: { id }, update: data, create: { id, ...data } });

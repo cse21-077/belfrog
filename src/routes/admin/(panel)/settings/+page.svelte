@@ -16,7 +16,17 @@
 
 <div class="grid max-w-5xl gap-6 lg:grid-cols-2">
 	<form method="POST" action="?/save" use:enhance class="{cardCls} space-y-5">
-		<h2 class="text-xl font-semibold text-stone-900">Contact & bookings</h2>
+		<h2 class="text-xl font-semibold text-stone-900">Homepage hero</h2>
+		<div>
+			<span class={labelCls}>Hero title</span>
+			<input name="heroTitle" class={inputCls} value={s.heroTitle} />
+		</div>
+		<div>
+			<span class={labelCls}>Hero subtitle</span>
+			<input name="heroSubtitle" class={inputCls} value={s.heroSubtitle} />
+		</div>
+
+		<h2 class="pt-4 text-xl font-semibold text-stone-900">Contact & bookings</h2>
 		<div>
 			<span class={labelCls}>Public contact email</span>
 			<input name="contactEmail" class={inputCls} value={s.contactEmail} />

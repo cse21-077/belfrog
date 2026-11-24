@@ -48,11 +48,37 @@ export const tents: Tent[] = [
 		blurb: null,
 		sortOrder: 4,
 		active: true
+	},
+	{
+		id: 'luxury-suite-1',
+		name: 'Luxury Suite 1',
+		localName: 'Luxury Tented Suite',
+		image: '/luxury-tent-1.jpg',
+		images: ['/luxury-tent-1.jpg', '/luxury-tent-outside.jpg', '/luxury-tent-2.jpg'],
+		capacity: 2,
+		pricePerNight: 2950,
+		blurb:
+			'Only 2 exclusive tents. Private outdoor shower, ensuite bathroom, and complete seasonal river-facing privacy. Includes daily breakfast.',
+		sortOrder: 5,
+		active: true
+	},
+	{
+		id: 'luxury-suite-2',
+		name: 'Luxury Suite 2',
+		localName: 'Luxury Tented Suite',
+		image: '/luxury-tent-2.jpg',
+		images: ['/luxury-tent-2.jpg', '/luxury-tent-outside.jpg', '/luxury-tent-1.jpg'],
+		capacity: 2,
+		pricePerNight: 2950,
+		blurb:
+			'Only 2 exclusive tents. Private outdoor shower, ensuite bathroom, and complete seasonal river-facing privacy. Includes daily breakfast.',
+		sortOrder: 6,
+		active: true
 	}
 ];
 
 export const rates: Rate[] = [
-	// Glamping accommodation (per night)
+	// Tented accommodation (per night)
 	{
 		id: 'standard-tent',
 		category: 'GLAMPING',
@@ -70,7 +96,7 @@ export const rates: Rate[] = [
 		category: 'GLAMPING',
 		name: 'Luxury Glamping Tented Suite',
 		details:
-			'Only 2 exclusive tents (launching end of August). Private outdoor shower, ensuite bathroom, private BBQ area, and complete river-facing privacy. Includes daily breakfast.',
+			'Only 2 exclusive tents. Private outdoor shower, ensuite bathroom, and complete seasonal river-facing privacy. Includes daily breakfast.',
 		minPax: 1,
 		maxPax: 2,
 		unit: 'PER_NIGHT',
@@ -117,7 +143,7 @@ export const rates: Rate[] = [
 		category: 'EXCURSION',
 		name: '2-Day Boat Overnight Camp',
 		details:
-			'Includes private motorboat excursion, packed lunch, park fees, qualified Guide, premium camping gear, and tents.',
+			'Includes private motorboat excursion, all meals, park fees, qualified Guide, premium camping gear, and tents.',
 		minPax: 2,
 		maxPax: null,
 		unit: 'PER_PERSON',
@@ -206,12 +232,12 @@ export const rates: Rate[] = [
 		active: true
 	},
 
-	// Helicopter Horizons (per person, USD)
+	// Helicopter Horizons (per person, USD — minimum 2 pax)
 	{
-		id: 'heli-15-oneway',
+		id: 'heli-transfer-oneway',
 		category: 'HELICOPTER',
-		name: '15-Minute Doors-On Transfer',
-		details: 'Maun to The Bell Frog (v.v.) direct transfer.',
+		name: 'Flight Transfer · Maun to The Bell Frog (One-Way)',
+		details: 'Direct helicopter transfer: Maun to The Bell Frog.',
 		minPax: 2,
 		maxPax: null,
 		unit: 'PER_PERSON',
@@ -220,66 +246,39 @@ export const rates: Rate[] = [
 		active: true
 	},
 	{
-		id: 'heli-25-scenic',
+		id: 'heli-transfer-return',
 		category: 'HELICOPTER',
-		name: '25-Minute Doors-Off Scenic Transfer',
-		details: 'Maun to The Bell Frog (v.v.) visual scenic flight.',
-		minPax: 2,
-		maxPax: null,
-		unit: 'PER_PERSON',
-		prices: [{ amount: 270, currency: 'USD', label: 'Per person', sortOrder: 1 }],
-		sortOrder: 2,
-		active: true
-	},
-	{
-		id: 'heli-15-return',
-		category: 'HELICOPTER',
-		name: '15-Minute Doors-On Return Transfer',
-		details: 'Standard return logic.',
+		name: 'Flight Transfer · Maun to The Bell Frog (Return)',
+		details: '15-Min one-way / 30-Min return. 15 min each way return transfer: Maun – Bell Frog – Maun.',
 		minPax: 2,
 		maxPax: null,
 		unit: 'PER_PERSON',
 		prices: [{ amount: 230, currency: 'USD', label: 'Per person', sortOrder: 1 }],
-		sortOrder: 3,
+		sortOrder: 2,
 		active: true
 	},
 	{
-		id: 'heli-combo',
+		id: 'heli-30-scenic',
 		category: 'HELICOPTER',
-		name: 'Scenic One-Way & Standard Return Combo',
-		details:
-			'25-minute Doors-Off Scenic Transfer (one way) & 15-minute Doors-On Return Transfer.',
+		name: '30-Min Doors-Off Scenic Flight',
+		details: 'Departing from Bell Frog and returning to Bell Frog.',
 		minPax: 2,
 		maxPax: null,
 		unit: 'PER_PERSON',
 		prices: [{ amount: 385, currency: 'USD', label: 'Per person', sortOrder: 1 }],
+		sortOrder: 3,
+		active: true
+	},
+	{
+		id: 'heli-45-scenic',
+		category: 'HELICOPTER',
+		name: '45-Min Doors-Off Scenic Flight',
+		details: 'Departing from Bell Frog and returning to Bell Frog.',
+		minPax: 2,
+		maxPax: null,
+		unit: 'PER_PERSON',
+		prices: [{ amount: 445, currency: 'USD', label: 'Per person', sortOrder: 1 }],
 		sortOrder: 4,
-		active: true
-	},
-	{
-		id: 'heli-elephant-havens',
-		category: 'HELICOPTER',
-		name: 'Elephant Havens Experience',
-		details:
-			'50-Minute Doors-Off Scenic Flight & Elephant Orphanage Visit. Includes a 1-hour experience at the sanctuary and a donation to the organization.',
-		minPax: 2,
-		maxPax: null,
-		unit: 'PER_PERSON',
-		prices: [{ amount: 595, currency: 'USD', label: 'Per person', sortOrder: 1 }],
-		sortOrder: 5,
-		active: true
-	},
-	{
-		id: 'heli-xhoo',
-		category: 'HELICOPTER',
-		name: 'Xhoo Community Experience',
-		details:
-			'35-Minute Doors-Off Scenic Flight & Cultural Village Tour. Includes a 3-hour immersive village life experience with a private guide. 25% of your payment directly supports community initiatives.',
-		minPax: 2,
-		maxPax: null,
-		unit: 'PER_PERSON',
-		prices: [{ amount: 535, currency: 'USD', label: 'Per person', sortOrder: 1 }],
-		sortOrder: 6,
 		active: true
 	},
 	{
@@ -287,26 +286,38 @@ export const rates: Rate[] = [
 		category: 'HELICOPTER',
 		name: 'Remote Champagne Experience',
 		details:
-			'Can be booked in conjunction with any scenic flight. Includes a midway stop on a deserted palm island to enjoy champagne in the wilderness.',
+			'Add-on to doors-off scenic flights. Includes a midway stop on a deserted palm island to enjoy champagne in the wilderness.',
 		minPax: 2,
 		maxPax: null,
 		unit: 'PER_PERSON',
 		prices: [{ amount: 50, currency: 'USD', label: 'Per person', sortOrder: 1 }],
-		sortOrder: 7,
+		sortOrder: 5,
 		active: true
 	},
-
-	// Special requests
 	{
-		id: 'moremi',
-		category: 'SPECIAL',
-		name: 'Moremi Game Reserve Excursions',
-		details: 'Custom-tailored 4x4 game drives. Contact management to book.',
-		minPax: null,
+		id: 'heli-elephant-havens',
+		category: 'HELICOPTER',
+		name: 'Elephant Havens Experience',
+		details:
+			'50-Minute Doors-Off Scenic Flight & Elephant Orphanage Visit. Includes a 1-hour sanctuary visit and donation.',
+		minPax: 2,
 		maxPax: null,
-		unit: 'ON_REQUEST',
-		prices: [],
-		sortOrder: 1,
+		unit: 'PER_PERSON',
+		prices: [{ amount: 595, currency: 'USD', label: 'Per person', sortOrder: 1 }],
+		sortOrder: 6,
+		active: true
+	},
+	{
+		id: 'heli-xhoo',
+		category: 'HELICOPTER',
+		name: 'Xhoo Community Experience',
+		details:
+			'35-Minute Doors-Off Scenic Flight & Cultural Village Tour. Includes 3-hour immersive guide tour; 25% directly supports community initiatives.',
+		minPax: 2,
+		maxPax: null,
+		unit: 'PER_PERSON',
+		prices: [{ amount: 535, currency: 'USD', label: 'Per person', sortOrder: 1 }],
+		sortOrder: 7,
 		active: true
 	}
 ];
@@ -348,6 +359,8 @@ export const reviews: Review[] = [
 ];
 
 export const settings: SiteSettings = {
+	heroTitle: 'Experience The Okavango Delta',
+	heroSubtitle: 'The Bell Frog Way',
 	contactEmail: 'tbfi.botswana@gmail.com',
 	notificationEmail: 'bookings@thebellfrog.com',
 	whatsapp: '26775116886',

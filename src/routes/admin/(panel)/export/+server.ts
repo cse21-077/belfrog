@@ -18,22 +18,21 @@ const p = (text: string, opts: { bold?: string } = {}) =>
 const ABOUT_COPY = [
 	'We’re an agro-tourism resort in the Okavango, Botswana, situated 2km from the Buffalo Fence and 20km from Maun.',
 	'Botswana is one of Africa’s most culturally and environmentally rich countries. It’s landlocked, with light soils, an arid to semi-arid climate, summer temperatures averaging over 40°C, and an annual rainfall of around 416mm. This little piece of heaven is where we decided to start farming.',
-	'In Maun and the Okavango Delta, tourism is vital to our livelihoods. Our Agro-Tourism classification allows us to use up to 50% of our plot for tourism. We’re currently awaiting the completion of our EMP before lodge construction begins — a main building with kitchen, lounge, dining area and bar; five tree houses, six top-quality double rooms, a pool bar, and quite possibly the only sauna on the Boro River.',
-	'We also have a small guest marina that can accommodate nine commercial pleasure craft at any one time.'
+	'In Maun and the Okavango Delta, tourism is vital to our livelihoods. Our Agro-Tourism classification allows us to use up to 50% of our plot for tourism, featuring a main building with a kitchen, lounge, dining area, and bar; two luxury tents; four standard tents; and a pool bar.'
 ];
 
 const MORE_INFO_COPY = [
-	'The Bell Frog Inn is nestled alongside the Boro River, which originates in the Southern Angolan mountains, courses through the Caprivi strip, winds through the heart of the Okavango Delta, and passes gracefully by our Bar & Restaurant.',
-	'Maun has over 55,000 inhabitants but still feels like an old frontier town. It’s an exciting off-road 40-minute drive to us, or a pleasant 35-minute jaunt up the river in one of our Swamp Cruisers. On the way you’ll pass cattle, goats and donkeys — and if you’re lucky, elephants, hippos, crocodiles and an abundance of birdlife. During flood season, The Bell Frog enjoys 300 metres of beautiful waterfront.',
+	'The Bell Frog Inn is nestled in the heart of the Okavango Delta, alongside the seasonal Boro River, which originates in the Southern Angolan mountains, courses through the Caprivi strip and winds through the Delta — flowing past our Bar & Restaurant when the annual flood arrives.',
+	'Maun has over 55,000 inhabitants but still feels like an old frontier town. It’s an exciting off-road 40-minute drive to us, or — when water levels allow — a pleasant 35-minute boat jaunt in one of our Swamp Cruisers. On the way you’ll pass cattle, goats and donkeys — and if you’re lucky, elephants, hippos, crocodiles and an abundance of birdlife. During flood season, The Bell Frog enjoys 300 metres of beautiful waterfront.',
 	'Cool off in our inviting overflow pool while enjoying our renowned artisanal pizza and legendary chicken jalapeño pocket — just ask our bartender.',
-	'Each tented room offers a serene riverside experience with its own ablution facilities, electricity for charging your devices, and views of the river (subject to flood conditions). Wake up to a complimentary breakfast, and let us prepare a packed lunch for your upstream boat excursion or game drive.'
+	'Each tented room offers a serene bush experience with its own ablution facilities, electricity for charging your devices, and views over the seasonal river when in flood. Wake up to a complimentary breakfast, and let us prepare a packed lunch for your upstream boat excursion or game drive.'
 ];
 
 const MOKORO_COPY =
 	'After a light breakfast, grab a wide-brimmed hat and a packed lunch. We’ll arrange pickup directly from your accommodation and take you gliding through the tranquil waterways of the Okavango Delta, surrounded by rich biodiversity.';
 
 const HELI_COPY =
-	'We’ve partnered with Helicopter Horizons for an incredible scenic flight over the south-western Okavango Delta. Doors are removed for unrestricted views, headsets keep you in touch with expert pilots, and you’ll soar above permanent waterways, palm islands and lagoons.';
+	'We’ve partnered with Helicopter Horizons for an incredible scenic flight over the south-western Okavango Delta. Doors are removed for unrestricted views, headsets keep you in touch with expert pilots, and you’ll soar above palm islands and lagoons. Choose from direct flight transfers, 30 & 45-minute doors-off scenic flights, or the Elephant Havens and Xhoo Community experiences.';
 
 export const GET: RequestHandler = async () => {
 	const [settings, tents, rates, reviewsCount] = await Promise.all([
@@ -48,12 +47,11 @@ export const GET: RequestHandler = async () => {
 	]);
 
 	const categoryOrder: Record<string, string> = {
-		GLAMPING: 'Glamping Accommodation',
+		GLAMPING: 'Tented Accommodation',
 		EXCURSION: 'Delta Excursions',
 		BOAT: 'Boat Cruises',
 		TRANSFER: 'Road & Boat Transfers',
-		HELICOPTER: 'Helicopter Horizons Flights',
-		SPECIAL: 'Special Requests'
+		HELICOPTER: 'Helicopter Horizons Flights'
 	};
 
 	const children: Paragraph[] = [
@@ -61,7 +59,7 @@ export const GET: RequestHandler = async () => {
 		p(`Exported from the CMS. Reviews managed in the CMS (${reviewsCount} published) are guest content and excluded.`, {}),
 
 		h('Hero'),
-		p('Okavango Delta, Botswana', { bold: 'A Riverside Escape in the Okavango — ' }),
+		p(settings.heroSubtitle, { bold: `${settings.heroTitle} — ` }),
 
 		h('Stay — Rates & Booking'),
 		p('Complimentary Wi-Fi access at the bar on request.'),

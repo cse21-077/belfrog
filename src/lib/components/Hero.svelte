@@ -12,7 +12,7 @@
 
 	const navLinks = [
 		{ label: 'Stay', href: '/#accommodation' },
-		{ label: 'Glamping', href: '/#glamping' },
+		{ label: 'Tented Accommodation', href: '/#glamping' },
 		{ label: 'Rates', href: '/#rates' },
 		{ label: 'About', href: '/#about' },
 		{ label: 'Experiences', href: '/#experiences' },
@@ -158,10 +158,10 @@
 			The Bell Frog Inn
 		</p>
 		<h1 class="mb-6 text-5xl font-bold tracking-tight md:text-7xl lg:text-8xl">
-			A Riverside Escape in the Okavango
+			{settings.heroTitle}
 		</h1>
 		<p class="mb-10 max-w-xl text-lg font-light leading-relaxed text-white/90 md:text-xl">
-			Okavango Delta, Botswana
+			{settings.heroSubtitle}
 		</p>
 		<div class="flex flex-wrap justify-center gap-4">
 			<a

@@ -7,7 +7,7 @@
 
 	const quickLinks = [
 		{ label: 'Accommodation', href: '/#accommodation' },
-		{ label: 'Glamping', href: '/#glamping' },
+		{ label: 'Tented Accommodation', href: '/#glamping' },
 		{ label: 'Rates', href: '/#rates' },
 		{ label: 'About', href: '/#about' },
 		{ label: 'Experiences', href: '/#experiences' },
@@ -25,7 +25,7 @@
 					class="mb-4 h-14 w-auto brightness-0 invert"
 				/>
 				<p class="text-sm leading-relaxed text-stone-400">
-					Agro-tourism on the Boro River in the Okavango Delta, Botswana.
+					Agro-tourism in the Okavango Delta, Botswana.
 				</p>
 			</div>
 

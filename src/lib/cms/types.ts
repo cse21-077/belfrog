@@ -13,13 +13,7 @@ export interface Tent {
 	images: string[];
 }
 
-export type RateCategory =
-	| 'GLAMPING'
-	| 'EXCURSION'
-	| 'BOAT'
-	| 'TRANSFER'
-	| 'HELICOPTER'
-	| 'SPECIAL';
+export type RateCategory = 'GLAMPING' | 'EXCURSION' | 'BOAT' | 'TRANSFER' | 'HELICOPTER';
 
 export type RateUnit = 'PER_NIGHT' | 'PER_PERSON' | 'PER_TRIP' | 'COMPLIMENTARY' | 'ON_REQUEST';
 
@@ -56,6 +50,8 @@ export interface Review {
 }
 
 export interface SiteSettings {
+	heroTitle: string;
+	heroSubtitle: string;
 	contactEmail: string;
 	notificationEmail: string;
 	whatsapp: string;

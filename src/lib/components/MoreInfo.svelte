@@ -32,16 +32,16 @@
 
 			<div class="order-1 space-y-6 leading-relaxed text-stone-700 lg:order-2">
 				<p>
-					The Bell Frog Inn is nestled alongside the <strong>Boro River</strong>, which originates in the Southern Angolan mountains, courses through the Caprivi strip, winds through the heart of the Okavango Delta, and passes gracefully by our Bar & Restaurant.
+					The Bell Frog Inn is nestled in the heart of the Okavango Delta, alongside the <strong>seasonal Boro River</strong>, which originates in the Southern Angolan mountains, courses through the Caprivi strip and winds through the Delta — flowing past our Bar &amp; Restaurant when the annual flood arrives.
 				</p>
 				<p>
-					Maun has over 55,000 inhabitants but still feels like an old frontier town. It’s an exciting off-road 40-minute drive to us, or a pleasant 35-minute jaunt up the river in one of our Swamp Cruisers. On the way you’ll pass cattle, goats and donkeys — and if you’re lucky, elephants, hippos, crocodiles and an abundance of birdlife. During flood season, The Bell Frog enjoys 300 metres of beautiful waterfront.
+					Maun has over 55,000 inhabitants but still feels like an old frontier town. It’s an exciting off-road 40-minute drive to us, or — when water levels allow — a pleasant 35-minute boat jaunt in one of our Swamp Cruisers. On the way you’ll pass cattle, goats and donkeys — and if you’re lucky, elephants, hippos, crocodiles and an abundance of birdlife. During flood season, The Bell Frog enjoys 300 metres of beautiful waterfront.
 				</p>
 				<p>
 					Cool off in our inviting overflow pool while enjoying our renowned <strong>artisanal pizza</strong> and legendary <strong>chicken jalapeño pocket</strong> — just ask our bartender.
 				</p>
 				<p>
-					Each tented room offers a serene riverside experience with its own ablution facilities, electricity for charging your devices, and views of the river (subject to flood conditions). Wake up to a complimentary breakfast, and let us prepare a packed lunch for your upstream boat excursion or game drive.
+					Each tented room offers a serene bush experience with its own ablution facilities, electricity for charging your devices, and views over the seasonal river when in flood. Wake up to a complimentary breakfast, and let us prepare a packed lunch for your upstream boat excursion or game drive.
 				</p>
 			</div>
 		</div>

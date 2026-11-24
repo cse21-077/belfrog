@@ -6,16 +6,15 @@
 	let { data } = $props();
 
 	const categoryTitles: Record<RateCategory, string> = {
-		GLAMPING: 'Glamping Accommodation',
+		GLAMPING: 'Tented Accommodation',
 		EXCURSION: 'Delta Excursions',
 		BOAT: 'Boat Cruises',
 		TRANSFER: 'Transfers',
-		HELICOPTER: 'Helicopter Flights',
-		SPECIAL: 'Special Requests'
+		HELICOPTER: 'Helicopter Flights'
 	};
 
 	const groups = $derived(
-		(['GLAMPING', 'EXCURSION', 'BOAT', 'TRANSFER', 'HELICOPTER', 'SPECIAL'] as RateCategory[])
+		(['GLAMPING', 'EXCURSION', 'BOAT', 'TRANSFER', 'HELICOPTER'] as RateCategory[])
 			.map((category) => ({
 				category,
 				items: data.rates.filter((r) => r.category === category)

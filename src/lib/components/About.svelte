@@ -18,10 +18,7 @@
 					Botswana is one of Africa’s most culturally and environmentally rich countries. It’s landlocked, with light soils, an arid to semi-arid climate, summer temperatures averaging over 40°C, and an annual rainfall of around 416mm. This little piece of heaven is where we decided to start farming.
 				</p>
 				<p>
-					In Maun and the Okavango Delta, tourism is vital to our livelihoods. Our Agro-Tourism classification allows us to use up to <strong>50% of our plot for tourism</strong>. We’re currently awaiting the completion of our EMP before lodge construction begins — a main building with kitchen, lounge, dining area and bar; five tree houses, six top-quality double rooms, a pool bar, and quite possibly the only sauna on the Boro River.
-				</p>
-				<p>
-					We also have a small guest marina that can accommodate <strong>nine commercial pleasure craft</strong> at any one time.
+					In Maun and the Okavango Delta, tourism is vital to our livelihoods. Our Agro-Tourism classification allows us to use up to <strong>50% of our plot for tourism</strong>, featuring a main building with a kitchen, lounge, dining area, and bar; two luxury tents; four standard tents; and a pool bar.
 				</p>
 			</div>
 

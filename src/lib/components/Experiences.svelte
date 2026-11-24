@@ -48,9 +48,9 @@
 				<p class="leading-relaxed text-stone-700">
 					We’ve partnered with Helicopter Horizons for an incredible scenic flight over the south-western
 					Okavango Delta. Doors are removed for unrestricted views, headsets keep you in touch with expert
-					pilots, and you’ll soar above permanent waterways, palm islands and lagoons. Choose from direct
-					transfers, scenic combos, or the Elephant Havens and Xhoo Community experiences — all listed in
-					our 2026 rates.
+					pilots, and you’ll soar above palm islands and lagoons. Choose from direct flight transfers,
+					30 &amp; 45-minute doors-off scenic flights, or the Elephant Havens and Xhoo Community
+					experiences — all listed in our 2026 rates.
 				</p>
 				<a
 					href="#rates"

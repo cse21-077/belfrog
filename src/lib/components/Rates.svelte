@@ -3,6 +3,7 @@
 	import {
 		CURRENCIES,
 		CURRENCY_META,
+		formatMoney,
 		formatRatePrice,
 		type Currency,
 		type Rate,
@@ -18,15 +19,14 @@
 	const fx = $derived({ usd: settings.fxUsd, eur: settings.fxEur });
 
 	const CATEGORY_META: Record<RateCategory, { title: string; blurb: string }> = {
-		GLAMPING: { title: 'Glamping Accommodation', blurb: 'Per night · includes daily breakfast' },
+		GLAMPING: { title: 'Tented Accommodation', blurb: 'Per night · includes daily breakfast' },
 		EXCURSION: { title: 'Delta Excursions', blurb: 'Mokoro & overnight wilderness trips' },
-		BOAT: { title: 'Boat Cruises', blurb: 'Motorboat trips on the Boro River' },
+		BOAT: { title: 'Boat Cruises', blurb: 'Motorboat trips into the Delta' },
 		TRANSFER: { title: 'Road & Boat Transfers', blurb: 'Between Maun and The Bell Frog' },
-		HELICOPTER: { title: 'Helicopter Horizons Flights', blurb: 'Partner packages · quoted per person in USD' },
-		SPECIAL: { title: 'Special Requests', blurb: 'Tailor-made arrangements' }
+		HELICOPTER: { title: 'Helicopter Horizons Flights', blurb: 'Partner packages · quoted per person in USD' }
 	};
 
-	const categoryOrder: RateCategory[] = ['GLAMPING', 'EXCURSION', 'BOAT', 'TRANSFER', 'HELICOPTER', 'SPECIAL'];
+	const categoryOrder: RateCategory[] = ['GLAMPING', 'EXCURSION', 'BOAT', 'TRANSFER', 'HELICOPTER'];
 
 	const byCategory = $derived(
 		categoryOrder
@@ -41,7 +41,9 @@
 		openCategory = openCategory === category ? null : category;
 	}
 
-	function priceText(price: { amount: number | null; currency: Currency }): string {
+	function priceText(price: { amount: number | null; currency: Currency }, category: RateCategory): string {
+		// Helicopter Horizons packages are always quoted (and shown) in USD.
+		if (category === 'HELICOPTER') return formatMoney(price.amount, price.currency);
 		return formatRatePrice(price, currency, fx);
 	}
 </script>
@@ -121,7 +123,7 @@
 											{:else}
 												{#each rate.prices as price (price.sortOrder + price.label)}
 													<div class="flex items-baseline gap-2 sm:justify-end">
-														<span class="text-lg font-bold text-brand">{priceText(price)}</span>
+														<span class="text-lg font-bold text-brand">{priceText(price, group.category)}</span>
 														<span class="text-xs text-stone-500">{price.label}</span>
 													</div>
 												{/each}
@@ -133,9 +135,9 @@
 
 							{#if group.category === 'HELICOPTER'}
 								<p class="mt-4 rounded-2xl bg-white/70 p-4 text-xs leading-relaxed text-stone-500 ring-1 ring-stone-100">
-									Partnership packages valid 1 Jan 2026 – 31 Dec 2026. Rates are quoted per person in USD —
-									converted to your selected currency above. Flight transfers include a maximum of 20kg of
-									luggage per person, strictly in soft-sided bags.
+									Partnership packages valid 1 Jan 2026 – 31 Dec 2026. Rates are quoted per person in USD
+									(shown in USD) — minimum 2 pax required. Luggage allowance on all flight transfers is
+									strictly limited to a maximum of 20kg per person in soft-sided bags.
 								</p>
 							{/if}
 						</div>

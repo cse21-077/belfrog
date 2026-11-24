@@ -2,7 +2,7 @@ import { error, fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { prisma } from '$lib/server/db';
 
-const CATEGORIES = ['GLAMPING', 'EXCURSION', 'BOAT', 'TRANSFER', 'HELICOPTER', 'SPECIAL'];
+const CATEGORIES = ['GLAMPING', 'EXCURSION', 'BOAT', 'TRANSFER', 'HELICOPTER'];
 const UNITS = ['PER_NIGHT', 'PER_PERSON', 'PER_TRIP', 'COMPLIMENTARY', 'ON_REQUEST'];
 const CURRENCIES = ['BWP', 'USD', 'EUR'];
 

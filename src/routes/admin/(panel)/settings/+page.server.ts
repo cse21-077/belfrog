@@ -14,6 +14,8 @@ export const actions: Actions = {
 	save: async ({ request }) => {
 		const form = await request.formData();
 		const keys = [
+			'heroTitle',
+			'heroSubtitle',
 			'contactEmail',
 			'notificationEmail',
 			'whatsapp',

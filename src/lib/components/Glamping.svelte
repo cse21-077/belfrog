@@ -24,16 +24,16 @@
 
 <section id="glamping" class="bg-stone-50 px-6 py-20 md:py-28">
 	<div class="mx-auto max-w-7xl">
-		<SectionHeading label="Tents" title="Glamping Accommodation" />
+		<SectionHeading label="Tents" title="Tented Accommodation" />
 
-		<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+		<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 			{#each tents as tent (tent.id)}
 				{@const images = gallery(tent)}
 				<article class="relative group overflow-hidden rounded-3xl bg-transparent ring-1 ring-stone-100 transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg">
 					<div class="relative aspect-[4/3] overflow-hidden">
 						<img
 							src={current(tent)}
-							alt="{tent.name} glamping tent"
+							alt="{tent.name} tented accommodation"
 							class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
 						/>
 

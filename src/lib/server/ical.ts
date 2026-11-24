@@ -119,10 +119,14 @@ export async function lastSyncAt(): Promise<Date | null> {
 	return Number.isNaN(date.getTime()) ? null : date;
 }
 
-/** Lazily re-sync when the last successful sync is older than `maxAgeMs`. */
+/** Lazily re-sync when the last successful sync is older than `maxAgeMs`. Never throws — a failed sync must not take down public pages. */
 export async function syncIfStale(maxAgeMs = 60 * 60 * 1000): Promise<void> {
-	const last = await lastSyncAt();
-	if (!last || Date.now() - last.getTime() > maxAgeMs) {
-		await syncAll();
+	try {
+		const last = await lastSyncAt();
+		if (!last || Date.now() - last.getTime() > maxAgeMs) {
+			await syncAll();
+		}
+	} catch (err) {
+		console.error('iCal sync skipped:', err instanceof Error ? err.message : err);
 	}
 }

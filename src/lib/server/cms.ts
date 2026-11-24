@@ -37,7 +37,8 @@ export async function getRates(): Promise<Rate[]> {
 		});
 		return rows.map((r) => ({
 			id: r.id,
-			category: r.category,
+			// The DB enum still contains the retired SPECIAL value; it is never rendered.
+			category: r.category as Rate['category'],
 			name: r.name,
 			details: r.details,
 			minPax: r.minPax,
